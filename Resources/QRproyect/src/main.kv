@@ -1,0 +1,733 @@
+# File name: main.py
+#:kivy 1.10.0
+
+ScreenManager:
+
+#Pantalla de inicio
+
+<InitScreen>:
+    FloatLayout:
+        Label:
+            text: "Notas de Laboratorio"
+            font_size: 60
+            pos_hint: {"right":1, "top":1}
+            size_hint: 1, 0.1
+            color: 0,1,0,1 
+
+        Label:
+            text: "Indique tipo de ingreso:"
+            font_size: 30
+            pos_hint: {"right":1, "top":0.9}
+            size_hint: 1, 0.1
+            color: 0,1,0,1    
+
+        Button:
+            text: "Estudiante"
+            pos_hint: {"right":1, "top":0.7}
+            font_size: 40
+            size_hint: 1, 0.2
+            color: 0,1,0,1
+            on_press:root.switchEstudiante()
+
+        Button:
+            text: "Profesor"
+            pos_hint: {"right":1, "top":0.3}
+            font_size: 40
+            size_hint: 1, 0.2
+            color: 0,1,0,1
+            on_press: root.manager.current = 'IngresaProfe'
+
+#Pantalla para indicar el estudiante desde el ingreso de estudiante
+<VerNotasEstudiante>:
+    FloatLayout:
+        Label:
+            text: "Ingrese estudiante:"
+            font_size: 30
+            pos_hint: {"right":1, "top":1}
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+
+        Label:
+            text: "Ingrese nombre del curso:"
+            font_size: 30
+            pos_hint: {"right":1, "top":0.4}
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+
+        TextInput:
+            id: entradaCurso
+            font_size: 30
+            pos_hint: {"right":1, "top":0.3}
+            size_hint: 1, 0.1
+            color: 0,1,0,1 
+            multiline: False 
+
+        Button:
+            text: "Ingresar"
+            pos_hint: {"right":1, "top":0.2}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.actualizarEntrada()            
+
+        Button:
+            text: "Atrás"
+            pos_hint: {"right":1, "top":0.1}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.back()
+
+#Clase para el display de las notas
+<RV>:
+    viewclass: 'Label'
+    RecycleBoxLayout:
+        default_size: None, dp(56)
+        default_size_hint: 1, None
+        size_hint_y: None
+        height: self.minimum_height
+        orientation: 'vertical'
+
+#Pantalla que muestra las notas con el ingreso de estudiante
+<DisplayNotasEstudiante>:
+    FloatLayout:
+        RV: 
+            id: displaydatose
+            pos_hint: {"right":1, "top":1}
+            size_hint: 1, 0.9
+        Button:
+            text: "Atrás"
+            pos_hint: {"right":1, "top":0.1}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.resetEstudiante()
+            on_press: root.manager.current = 'VerNotasEstudiante'
+
+#Pantalla para ingresar como profesor o crear nuevo usuario
+<IngresaProfe>:
+    FloatLayout:
+        Label:
+            text: "Profesor"
+            font_size: 50
+            pos_hint: {"right":1, "top":1}
+            size_hint: 1, 0.1
+            color: 0,1,0,1 
+
+        Button:
+            text: "Nuevo usuario"
+            pos_hint: {"right":1, "top":0.8}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.manager.current = 'NuevoProfe'
+
+        Button:
+            text: "Usuario existente"
+            pos_hint: {"right":1, "top":0.6}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.manager.current = 'LoginProfe'
+
+        Button:
+            text: "Atrás"
+            pos_hint: {"right":1, "top":0.2}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.manager.current = 'InitScreen'
+
+#Pantalla para agregar nuevo profesor a la base de datos
+<NuevoProfe>:
+    FloatLayout:
+        Label:
+            text: "Profesor"
+            font_size: 50
+            pos_hint: {"right":1, "top":1}
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+
+        Label:
+            text: "Ingrese nuevo usuario y contraseña:"
+            font_size: 40
+            pos_hint: {"right":1, "top":0.9}
+            size_hint: 1, 0.1
+            color: 0,1,0,1   
+
+        Label:
+            text: "Usuario:"
+            font_size: 30
+            pos_hint: {"right":1, "top":0.8}
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+
+        TextInput: 
+            id: usuario
+            font_size: 30
+            pos_hint: {"right":1, "top":0.7}
+            size_hint: 1, 0.1
+            color: 0,1,0,1 
+            multiline: False
+
+        Label:
+            text: "Contraseña:"
+            font_size: 30
+            pos_hint: {"right":1, "top":0.6}
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+
+        TextInput: 
+            id: contrasena
+            font_size: 30
+            pos_hint: {"right":1, "top":0.5}
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            multiline: False
+
+        Button:
+            text: "Ingresar"
+            pos_hint: {"right":1, "top":0.3}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.nuevo()
+
+        Button:
+            text: "Atrás"
+            pos_hint: {"right":1, "top":0.2}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.manager.current = 'IngresaProfe' 
+
+#Pantalla para hacer ingreso de profesor
+<LoginProfe>:
+    FloatLayout:
+        Label:
+            text: "Profesor"
+            font_size: 50
+            pos_hint: {"right":1, "top":1}
+            size_hint: 1, 0.1
+            color: 0,1,0,1 
+
+        Label:
+            text: "Ingrese usuario y contraseña:"
+            font_size: 40
+            pos_hint: {"right":1, "top":0.9}
+            size_hint: 1, 0.1
+            color: 0,1,0,1   
+
+        Label:
+            text: "Usuario:"
+            font_size: 30
+            pos_hint: {"right":1, "top":0.8}
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+
+        TextInput:
+            id: usuario 
+            font_size: 30
+            pos_hint: {"right":1, "top":0.7}
+            size_hint: 1, 0.1
+            color: 0,1,0,1 
+            multiline: False
+
+        Label:
+            text: "Contraseña:"
+            font_size: 30
+            pos_hint: {"right":1, "top":0.6}
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+
+        TextInput: 
+            id: contrasena
+            font_size: 30
+            pos_hint: {"right":1, "top":0.5}
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            multiline: False
+            password: True
+
+        Button:
+            text: "Ingresar"
+            pos_hint: {"right":1, "top":0.3}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.ingresar()
+
+        Button:
+            text: "Atrás"
+            pos_hint: {"right":1, "top":0.2}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.manager.current = 'IngresaProfe'
+
+#Pantalla con las opciones para el profesor
+<DisplayProfe>:
+    FloatLayout:
+        Label:
+            text: "Profesor"
+            font_size: 50
+            pos_hint: {"right":1, "top":1}
+            size_hint: 1, 0.1
+            color: 0,1,0,1 
+
+        Button:
+            text: "Crear laboratorio"
+            pos_hint: {"right":1, "top":0.8}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.profeCreaLabo()
+
+        Button:
+            text: "Agregar estudiante"
+            pos_hint: {"right":1, "top":0.7}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.manager.current = 'AgregaEstudiante'
+
+        Button:
+            text: "Calificar"
+            pos_hint: {"right":1, "top":0.6}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.switchEstudiante()
+
+        Button:
+            text: "Ver notas"
+            pos_hint: {"right":1, "top":0.5}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.switchEstudianteA()
+
+        Button:
+            text: "Atrás"
+            pos_hint: {"right":1, "top":0.2}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.manager.current = 'InitScreen'
+
+#Pantalla para ingresar id de nuevo estudiante
+<AgregaEstudiante>:
+    FloatLayout:
+        Label:
+            text: "Ingrese estudiante:"
+            font_size: 30
+            pos_hint: {"right":1, "top":0.8}
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+
+        TextInput:
+            id: nuevoEstudiante
+            font_size: 30
+            pos_hint: {"right":1, "top":0.6}
+            size_hint: 1, 0.1
+            color: 0,1,0,1 
+            multiline: False  
+
+        Button:
+            text: "Ingresar"
+            pos_hint: {"right":1, "top":0.4}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.agregarEstudiante() 
+
+        Button:
+            text: "Atrás"
+            pos_hint: {"right":1, "top":0.1}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.manager.current = 'DisplayProfe'
+
+#Pantalla para ingresar estudiante a calificar
+<InputEstudiante>:
+    FloatLayout:
+        Label:
+            text: "Ingrese estudiante:"
+            font_size: 30
+            pos_hint: {"right":1, "top":1}
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+
+        Button:
+            text: "Ingresar"
+            pos_hint: {"right":1, "top":0.2}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.actualizarEntrada()     
+
+        Button:
+            text: "Atrás"
+            pos_hint: {"right":1, "top":0.1}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.back()
+
+#Pantalla para seleccionar rubro a calificar
+<Rubros>:
+    FloatLayout:
+        Label:
+            text: "Seleccione un rubro:"
+            font_size: 50
+            pos_hint: {"right":1, "top":1}
+            size_hint: 1, 0.1
+            color: 0,1,0,1 
+
+        Button:
+            text: "Asistencia"
+            pos_hint: {"left":0.5, "top":0.8}
+            font_size: 40
+            size_hint: 0.5, 0.2
+            color: 0,1,0,1
+            on_press: root.manager.current = 'CalificarA'
+
+        Button:
+            text: "Prereporte"
+            pos_hint: {"right":1, "top":0.8}
+            font_size: 40
+            size_hint: 0.5, 0.2
+            color: 0,1,0,1
+            on_press: root.manager.current = 'CalificarP'
+
+        Button:
+            text: "Quiz"
+            pos_hint: {"left":0.5, "top":0.6}
+            font_size: 40
+            size_hint: 0.5, 0.2
+            color: 0,1,0,1
+            on_press: root.manager.current = 'CalificarQ'
+
+        Button:
+            text: "Cotidiano"
+            pos_hint: {"right":1, "top":0.6}
+            font_size: 40
+            size_hint: 0.5, 0.2
+            color: 0,1,0,1
+            on_press: root.manager.current = 'CalificarC'
+ 
+        Button:
+            text: "Reporte"
+            pos_hint: {"left":0.5, "top":0.4}
+            font_size: 40
+            size_hint: 0.5, 0.2
+            color: 0,1,0,1
+            on_press: root.manager.current = 'CalificarR'
+
+        Button:
+            text: "Atrás"
+            pos_hint: {"right":1, "top":0.2}
+            font_size: 40
+            size_hint: 0.5, 0.2
+            color: 0,1,0,1
+            on_press: root.resetEstudiante()
+            on_press: root.manager.current = 'InputEstudiante'
+
+#Pantalla para calificar asistencia
+<CalificarA>:
+    FloatLayout:
+        Label:
+            text: "Indique el numero de laboratorio:"
+            font_size: 50
+            pos_hint: {"right":1, "top":1}
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+
+        TextInput:
+            id: labo 
+            font_size: 30
+            pos_hint: {"right":1, "top":0.9}
+            size_hint: 1, 0.1
+            color: 0,1,0,1 
+            multiline: False
+            input_type: 'number' 
+
+        Label:
+            text: "Indique la asistencia como 1 o 0:"
+            font_size: 50
+            pos_hint: {"right":1, "top":0.7}
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+
+        TextInput:
+            id: nota 
+            font_size: 30
+            pos_hint: {"right":1, "top":0.6}
+            size_hint: 1, 0.1
+            color: 0,1,0,1 
+            multiline: False
+            input_type: 'number' 
+
+        Button:
+            text: "Ingresar"
+            pos_hint: {"right":1, "top":0.4}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.asignarRubro()     
+
+        Button:
+            text: "Atrás"
+            pos_hint: {"right":1, "top":0.2}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.manager.current = 'Rubros'
+
+#Pantalla para calificar prereporte
+<CalificarP>:
+    FloatLayout:
+        Label:
+            text: "Indique el numero de laboratorio:"
+            font_size: 50
+            pos_hint: {"right":1, "top":1}
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+
+        TextInput:
+            id: labo 
+            font_size: 30
+            pos_hint: {"right":1, "top":0.9}
+            size_hint: 1, 0.1
+            color: 0,1,0,1 
+            multiline: False
+            input_type: 'number' 
+
+        Label:
+            text: "Indique la nota:"
+            font_size: 50
+            pos_hint: {"right":1, "top":0.7}
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+
+        TextInput:
+            id: nota 
+            font_size: 30
+            pos_hint: {"right":1, "top":0.6}
+            size_hint: 1, 0.1
+            color: 0,1,0,1 
+            multiline: False
+            input_type: 'number' 
+
+        Button:
+            text: "Ingresar"
+            pos_hint: {"right":1, "top":0.4}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.asignarRubro()     
+
+        Button:
+            text: "Atrás"
+            pos_hint: {"right":1, "top":0.2}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.manager.current = 'Rubros'
+
+#Pantalla para calificar quiz
+<CalificarQ>:
+    FloatLayout:
+        Label:
+            text: "Indique el numero de laboratorio:"
+            font_size: 50
+            pos_hint: {"right":1, "top":1}
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+
+        TextInput:
+            id: labo 
+            font_size: 30
+            pos_hint: {"right":1, "top":0.9}
+            size_hint: 1, 0.1
+            color: 0,1,0,1 
+            multiline: False
+            input_type: 'number' 
+
+        Label:
+            text: "Indique la nota:"
+            font_size: 50
+            pos_hint: {"right":1, "top":0.7}
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+
+        TextInput:
+            id: nota 
+            font_size: 30
+            pos_hint: {"right":1, "top":0.6}
+            size_hint: 1, 0.1
+            color: 0,1,0,1 
+            multiline: False
+            input_type: 'number' 
+
+        Button:
+            text: "Ingresar"
+            pos_hint: {"right":1, "top":0.4}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.asignarRubro()     
+
+        Button:
+            text: "Atrás"
+            pos_hint: {"right":1, "top":0.2}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.manager.current = 'Rubros'
+
+#Pantalla para calificar trabajo en clase
+<CalificarC>:
+    FloatLayout:
+        Label:
+            text: "Indique el numero de laboratorio:"
+            font_size: 50
+            pos_hint: {"right":1, "top":1}
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+
+        TextInput:
+            id: labo 
+            font_size: 30
+            pos_hint: {"right":1, "top":0.9}
+            size_hint: 1, 0.1
+            color: 0,1,0,1 
+            multiline: False
+            input_type: 'number' 
+
+        Label:
+            text: "Indique la nota:"
+            font_size: 50
+            pos_hint: {"right":1, "top":0.7}
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+
+        TextInput:
+            id: nota 
+            font_size: 30
+            pos_hint: {"right":1, "top":0.6}
+            size_hint: 1, 0.1
+            color: 0,1,0,1 
+            multiline: False
+            input_type: 'number' 
+
+        Button:
+            text: "Ingresar"
+            pos_hint: {"right":1, "top":0.4}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.asignarRubro()     
+
+        Button:
+            text: "Atrás"
+            pos_hint: {"right":1, "top":0.2}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.manager.current = 'Rubros'
+
+#Pantalla para calificar reporte
+<CalificarR>:
+    FloatLayout:
+        Label:
+            text: "Indique el numero de laboratorio:"
+            font_size: 50
+            pos_hint: {"right":1, "top":1}
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+
+        TextInput:
+            id: labo 
+            font_size: 30
+            pos_hint: {"right":1, "top":0.9}
+            size_hint: 1, 0.1
+            color: 0,1,0,1 
+            multiline: False
+            input_type: 'number' 
+
+        Label:
+            text: "Indique la nota:"
+            font_size: 50
+            pos_hint: {"right":1, "top":0.7}
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+
+        TextInput:
+            id: nota 
+            font_size: 30
+            pos_hint: {"right":1, "top":0.6}
+            size_hint: 1, 0.1
+            color: 0,1,0,1 
+            multiline: False
+            input_type: 'number' 
+
+        Button:
+            text: "Ingresar"
+            pos_hint: {"right":1, "top":0.4}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.asignarRubro()     
+
+        Button:
+            text: "Atrás"
+            pos_hint: {"right":1, "top":0.2}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.manager.current = 'Rubros'
+
+#Pantalla para indicar el estudiante desde el ingreso de profesor
+<VerNotasProfe>:
+    FloatLayout:
+        Label:
+            text: "Ingrese estudiante:"
+            font_size: 30
+            pos_hint: {"right":1, "top":1}
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+
+        Button:
+            text: "Ingresar"
+            pos_hint: {"right":1, "top":0.3}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.actualizarEntrada()          
+
+        Button:
+            text: "Atrás"
+            pos_hint: {"right":1, "top":0.1}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.back()
+
+#Pantalla que muestra las notas con el ingreso de profesor
+<DisplayNotasProfe>:
+    FloatLayout:
+        RV:
+            id: displaydatosp
+            pos_hint: {"right":1, "top":1}
+            size_hint: 1, 0.9
+
+        Button:
+            text: "Atrás"
+            pos_hint: {"right":1, "top":0.1}
+            font_size: 40
+            size_hint: 1, 0.1
+            color: 0,1,0,1
+            on_press: root.resetEstudiante()
+            on_press: root.manager.current = 'VerNotasProfe'

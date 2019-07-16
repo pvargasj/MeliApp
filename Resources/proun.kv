@@ -1,0 +1,807 @@
+#:kivy 1.9.1
+<pant1>:
+	id: screen_manager
+
+	Screen: 
+		name: "inipant"
+
+		GridLayout:
+			cols: 1 
+			spacing: 100
+		BoxLayout:
+			orientation: "vertical"
+			padding: 10
+			canvas:
+				Color:
+					rgb: 1,1,1,1
+				Rectangle:
+					pos: self.pos
+					size: self.size
+					source: 'splashArt.png'
+			Button:
+				text: ""
+				on_release: root.current = "LoginScreen"
+				
+				background_color: 0, 0, 0, 0
+								
+	
+			
+
+
+<LoginScreen>:
+	name: "LoginScreen"
+
+	AnchorLayout:
+		anchor_x: 'center'
+        anchor_y: 'center'
+		spacing: 30
+		padding: 30,30,30,30
+		canvas:
+			Color:
+				rgb: 1,1,1
+			Rectangle:
+				size: self.size
+				pos: self.pos
+				source:'fondo4.jpg'
+
+		RelativeLayout:
+			size_hint: None, None
+			size: 300, 300
+			pos: 50,200
+			canvas:
+				Color:
+					rgb: 0,0.6,0.5
+				Rectangle:
+					size: self.size
+					pos: 0,0
+					source:'limpio.png'
+
+			Label:
+				text:'Username:'
+				font_size: 0.055*self.height
+				pos:  [-160,65]
+
+			Label:
+				text:'Password:'
+				font_size: 0.055*self.height
+				pos:  [-160,5]
+
+			TextInput:
+				id: texto1
+				multiline:False
+				background_color: 0, 0, 0, 0.4
+				size_hint:[None,None]
+				size:  [300,35]
+				pos:  [30,190]
+				text: ''
+
+			TextInput:
+				id: texto2
+				password: True
+				multiline:False
+				background_color: 0, 0, 0, 0.4
+				size_hint:[None,None]
+				size:  [300,35]
+				pos:  [30,130]
+				text: ''
+				
+			Button:
+				size_hint:[None,None]
+				pos: 10, 15
+				height: 50
+				width: 150
+				text: 'Login'
+				background_color: 1, 0, 0.1, 0.6
+				on_release: root.login22()
+
+			Button:
+				size_hint:[None,None]
+				pos: 180, 15
+				height: 50
+				width: 150
+				text: 'Create account'
+				background_color: 0, 0.5, 1, 0.6
+				on_release: root.manager.current = "screen4"
+
+				
+				
+				
+				
+				
+<AccountScreen>:
+	name: "AccountScreen"
+
+	AnchorLayout:
+		anchor_x: 'center'
+        anchor_y: 'center'
+		spacing: 30
+		padding: 30,30,30,30
+		canvas:
+			Color:
+				rgb: 1,1,1
+			Rectangle:
+				size: self.size
+				pos: self.pos
+				source: 'fondo2.jpg'
+
+		RelativeLayout:
+			spacing: 70
+
+			size_hint: None, None
+			size: 300, 300
+			pos: 50,200
+			canvas:
+				Color:
+					rgb: 0,0.6,0.5
+				Rectangle:
+					size: self.size
+					pos: 0,0
+					source: 'limpio.png'
+			Label:
+				text:'Username:'
+				font_size: 0.055*self.height
+				color: 0,0,0,1
+				pos:  [-160,110]
+
+			Label:
+				text:'Password:'
+				font_size: 0.055*self.height
+				color: 0,0,0,1
+				pos:  [-160,60]
+
+			Label:
+				text:'Confirm Password:'
+				font_size: 0.055*self.height
+				color: 0,0,0,1
+				pos:  [-190,10]
+
+			Label:
+				text:'Email:'
+				font_size: 0.055*self.height
+				color: 0,0,0,1
+				pos:  [-150,-40]
+
+			TextInput:
+				id: texto1
+				focus: True
+				multiline:False         # Nombre de Usuario
+				background_color: 0, 0, 0, 0.5
+				size_hint:[None,None]
+				size:  [300,35]
+				pos:  [30,240]
+				text: ''
+
+			TextInput:
+				id: texto2
+				password: True
+				multiline:False         # Clave
+				background_color: 0, 0, 0, 0.5
+				size_hint:[None,None]
+				size:  [300,35]
+				pos:  [30,190]
+				text: ''
+
+			TextInput:
+				id: texto3
+				password: True
+				multiline:False			# Confirmacion de clave
+				background_color: 0, 0, 0, 0.5
+				size_hint:[None,None]
+				size:  [300,35]
+				pos:  [30,140]
+				text: ''
+				
+			TextInput:
+				id: texto4
+				focus: True              #email
+				multiline:False
+				background_color: 0, 0, 0, 0.5
+				size_hint:[None,None]
+				size:  [300,35]
+				pos:  [30,90]
+				text: ''
+
+			Button:
+				size_hint:[None,None]
+				pos: 10, 1
+				height: 50
+				width: 150
+				text: 'Login'
+				background_color: 1, 0, 0.1, 0.6
+				on_release: root.manager.current = "screen1"
+				
+
+			Button:
+				size_hint:[None,None]
+				pos: 180, 1
+				height: 50
+				width: 150
+				text: 'Create account'
+				background_color: 0, 0.5, 1, 0.6
+				on_release: root.createe()
+
+
+
+
+<CateScreen>:
+	name: "CateScreen"
+
+
+<ReceScreen>:
+	id: ReceScreen
+	name: "ReceScreen"
+	
+
+
+
+<Conbox>:
+	orientation: "vertical"
+
+	canvas:
+		Color:
+			rgb: 1,1,1,0
+
+		Rectangle:
+			size: self.size
+			pos: self.pos
+			source: 'fondo6.jpg'
+
+	Label:
+		text:'Categorías:'
+		font_name: 'FreeMono'
+        bold: True
+        italic: True
+		font_size: 0.3*self.height
+		color: 1,1,1,1
+		pos:  self.pos	
+		
+
+
+<Conju>:
+	orientation: "horizontal"
+	canvas:
+		Color:
+			rgb: 1,1,1,0
+
+		Rectangle:
+			size: self.size
+			pos: self.pos
+			source: 'fondo7.jpg'	
+
+	Label:
+		text:'Recetas:'
+		font_name: 'FreeMono'
+        bold: True
+        italic: True
+		font_size: 0.1*self.height
+		color: 1,1,1,1
+		pos:  self.pos	
+
+
+<Wirese>:
+
+	orientation: "vertical"
+	id: ares
+	size_hint: None,1
+	size: 300, 100
+	canvas:
+		Color:
+			rgb: 1,0.6,1,0
+
+		Rectangle:
+			size: self.size
+			pos: self.pos
+			source: 'limpio.png'
+
+
+
+<Wid_btns>:
+	
+	orientation: "vertical"
+	id: addbb
+	size_hint: None,1
+	size: 200, 100
+	canvas:
+		Color:
+			rgb: 0,0.6,0.5,0
+
+		Rectangle:
+			size: self.size
+			pos: self.pos
+			source: 'limpio.png'
+
+
+<Box01>:
+	AnchorLayout:
+		anchor_x: 'center'
+        anchor_y: 'center'
+		spacing: 0
+		padding: 0,0,0,0
+		canvas:
+			Color:
+				rgb: 1,.5,0.1
+			Rectangle:
+				size: self.size
+				pos: self.pos
+
+		RelativeLayout:
+
+			size_hint: 1, 1
+			size: 800, 800
+			pos: 50,200
+			canvas:
+				Color:
+					rgb: 1,1,1
+				Rectangle:
+					size: self.size
+					pos: 0,0
+					source: 'fondo2.jpg'
+
+			AnchorLayout:
+				anchor_x: 'left'
+				size_hint: 0.75, 0.1
+				pos_hint:  {"x":0.125,"y":0.9}
+				pos: 50,200
+				canvas:
+					Color:
+						rgb: 1,0.5,0.7
+
+					Rectangle:
+						size: self.size
+						pos: self.pos
+						source: 'limpio.png'          
+				
+				Label:
+					color: 0,0,0,1
+					text: 'Plato:'
+					font_size: 0.6*self.height
+					font_name: 'FreeMono'
+					bold: True
+					italic: True
+					halign: 'left'
+					valign: 'top'
+
+
+			TextInput:
+				id: texto1
+				multiline:False
+				background_color: 0,0,0,.2
+				size_hint:[0.75,0.0625]
+				pos_hint:  {"x":0.125,"y":0.84}
+
+			AnchorLayout:
+				anchor_x: 'left'
+				size_hint: 0.35, 0.05
+				pos_hint:  {"x":0.125,"y":0.75}
+				pos: 50,200
+				canvas:
+					Color:
+						rgb: 1,0.5,0.6
+					Rectangle:
+						size: self.size
+						pos: self.pos
+						source: 'limpio.png'
+				Label:
+					color: 0,0,0,1
+					text: 'Ingredientes:'
+					font_size: 0.6*self.height
+					font_name: 'FreeMono'
+					bold: True
+					italic: True
+					halign: 'left'
+					valign: 'top'
+
+			TextInput:
+				id: texto2
+				background_color: 0,0,0,.2
+				size_hint:[0.35,0.5]
+				pos_hint:  {"x":0.125,"y":0.25}
+
+			AnchorLayout:
+
+				size_hint: 0.35, 0.05
+				pos_hint:  {"x":0.525,"y":0.75}
+				pos: 50,200
+				canvas:
+					Color:
+						rgb: 1,0.5,0.6
+					Rectangle:
+						size: self.size
+						pos: self.pos
+						source: 'limpio.png'
+				Label:
+					color: 0,0,0,1
+					text: 'Procedimiento:'
+					font_size: 0.6*self.height
+					font_name: 'FreeMono'
+					bold: True
+					italic: True
+					halign: 'left'
+					valign: 'top'
+
+			TextInput:
+				id: texto3
+				background_color: 0,0,0,.2
+				size_hint:[0.35,0.5]
+				pos_hint:  {"x":0.525,"y":0.25}
+
+			AnchorLayout:
+				anchor_x: 'left'
+				size_hint: 0.75, 0.1
+				pos_hint:  {"x":0.001,"y":0.13}
+				pos: 10,200
+				canvas:
+					Color:
+						rgb: 1,0.5,0.6
+					Rectangle:
+						size: self.size
+						pos: self.pos
+						source: 'limpio.png'
+
+				Label:
+					color: 0,0,0,1
+					text: 'Porciones:'
+					font_size: 0.4*self.height
+					font_name: 'FreeMono'
+					bold: True
+					italic: True
+					halign: 'left'
+					valign: 'top'
+
+			TextInput:
+				id: texto4
+				multiline:False
+				size_hint:[0.15,0.0625]
+				background_color: 0,0,0,.2
+				pos_hint:  {"x":0.495,"y":0.145}
+
+			BoxLayout:
+				anchor_x: 'left'
+				size_hint: 0.15, 0.1
+				pos_hint:  {"x":0.125,"y":0.001}
+				pos: 50,200
+				canvas:
+					Color:
+						rgb: 1,0.5,0.6
+					Rectangle:
+						size: self.size
+						pos: self.pos
+						source: 'boton.png'
+				Button:
+					text: 'Atrás'
+					color: 0,0,0,1
+					background_color: 0, 0, 1, 0
+					on_release: root.manager.current = "screen2"
+			BoxLayout:
+				anchor_x: 'left'
+				size_hint: 0.15, 0.1
+				pos_hint:  {"x":0.796,"y":0.001}
+				pos: 50,200
+				canvas:
+					Color:
+						rgb: 0.8,0.5,0.6
+					
+					Rectangle:
+						size: self.size
+						pos: self.pos
+						source: 'boton.png'
+				Button:
+					text: 'Ok'
+					color: 0,0,0,1
+					on_release: root.readText()
+					background_color: 0, 0, 1, 0
+
+
+<Box02>:
+    AnchorLayout:
+		anchor_x: 'center'
+        anchor_y: 'center'
+		spacing: 0
+		padding: 0,0,0,0
+		canvas:
+			Color:
+				rgb: 1,.5,0.1
+			Rectangle:
+				size: self.size
+				pos: self.pos
+
+		RelativeLayout:
+
+			size_hint: 1, 1
+			size: 800, 800
+			pos: 50,200
+			canvas:
+				Color:
+					rgb: 1,1,1
+				Rectangle:
+					size: self.size
+					pos: 0,0
+					source: 'fondo2.jpg'
+
+            AnchorLayout:
+                anchor_x: 'left'
+                size_hint: 0.8, 0.1
+                pos_hint:  {"x":0.125,"y":0.9}
+                pos: 50,200
+                canvas:
+                    Color:
+                        rgb: 1,0.5,0.6
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+						source: 'limpio.png'
+                Label:
+                    color: 0,0,0,1
+                    text: 'Plato:'
+                    font_size: 0.6*self.height
+                    font_name: 'FreeMono'
+                    bold: True
+                    italic: True
+                    halign: 'left'
+                    valign: 'top'
+
+            BoxLayout:
+
+                size_hint:[0.75,0.0625]
+                pos_hint:  {"x":0.125,"y":0.84}
+                pos: 50,200
+                canvas:
+                    Color:
+                        rgb: 1,1,1
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+						source:'limpio.png'
+                Label:
+                    id: texto1
+                    color: 0,0,0,1
+					background_color: 0,0,0,.4
+                    text: 'Pollo:'
+                    font_size: 0.6*self.height
+                    font_name: 'FreeMono'
+                    bold: True
+                    italic: False
+                    text_size: self.size
+                    halign: 'left'
+                    valign: 'top'
+
+
+            AnchorLayout:
+                anchor_x: 'left'
+                size_hint: 0.35, 0.05
+                pos_hint:  {"x":0.125,"y":0.75}
+                pos: 50,200
+                canvas:
+                    Color:
+                        rgb: 1,0.5,0.6
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+						source: 'limpio.png' 
+
+                Label:
+                    color: 0,0,0,1
+                    text: 'Ingredientes:'
+					background_color: 0,0,0,.2
+                    font_size: 0.6*self.height
+                    font_name: 'FreeMono'
+                    bold: True
+                    italic: True
+
+                    halign: 'left'
+                    valign: 'top'
+
+            BoxLayout:
+                anchor_x: 'left'
+                size_hint:[0.35,0.5]
+                pos_hint:  {"x":0.125,"y":0.25}
+                pos: 50,200
+                canvas:
+                    Color:
+                        rgb: 1,1,1
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+						source: 'limpio.png'
+                Label:
+                    id: texto2
+                    color: 0,0,0,1
+                    text: "1 kg de pechuga de pollo.   2 cucharadas de mantequilla.    Sal al gusto.    Pimienta al gusto"
+					background_color: 0,0,0,.4
+                    font_size: 0.07*self.height
+                    font_name: 'FreeMono'
+                    bold: True
+                    italic: True
+                    text_size: self.size
+                    halign: 'left'
+                    valign: 'top'
+
+
+
+            AnchorLayout:
+
+                size_hint: 0.35, 0.05
+                pos_hint:  {"x":0.525,"y":0.75}
+                pos: 50,200
+                canvas:
+                    Color:
+                        rgb: 1,0.5,0.6
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+						source: 'limpio.png' 
+
+                Label:
+                    color: 0,0,0,1
+                    text: 'Procedimiento:'
+                    font_size: 0.6*self.height
+                    font_name: 'FreeMono'
+                    bold: True
+                    italic: True
+                    halign: 'left'
+                    valign: 'top'
+
+
+            AnchorLayout:
+                anchor_y: 'top'
+                size_hint: 0.35, 0.05
+                size_hint:[0.35,0.5]
+                pos_hint:  {"x":0.525,"y":0.25}
+                canvas:
+                    Color:
+                        rgb: 1,1,1
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+						source: 'limpio.png' 
+
+                Label:
+                    id: texto3
+                    color: 0,0,0,1
+                    text: "Cortar el pollo en trozos.  Calentar un sartén a fuego lento.   Agregar la mantequilla al sarten"
+					background_color: 0,0,0,.4
+                    font_size: 0.07*self.height
+                    font_name: 'FreeMono'
+                    bold: True
+                    italic: True
+                    text_size: self.size
+                    halign: 'left'
+                    valign: 'top'
+
+            AnchorLayout:
+                anchor_x: 'left'
+                size_hint: 0.8, 0.1
+                pos_hint:  {"x":0.125,"y":0.07}
+                pos: 50,200
+                canvas:
+                    Color:
+                        rgb: 1,0.5,0.6
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+						source: 'limpio.png' 
+
+                Label:
+                    color: 0,0,0,1
+                    text: 'Porciones:'
+                    font_size: 0.6*self.height
+					background_color: 0,0,0,.2
+                    font_name: 'FreeMono'
+                    bold: True
+                    italic: True
+                    text_size: self.size
+                    halign: 'left'
+                    valign: 'top'
+
+            AnchorLayout:
+                size_hint:[0.07,0.07]
+                pos_hint:  {"x":0.4,"y":0.1}
+                canvas:
+                    Color:
+                        rgb: 1,1,1
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+						source: 'limpio.png' 
+
+                Label:
+                    id: texto4
+                    color: 0,0,0,1
+                    text: '4'
+                    font_size: 0.6*self.height
+					background_color: 0,0,0,.4
+                    font_name:
+                    bold: True
+                    italic: False
+
+            BoxLayout:
+				anchor_x: 'left'
+				size_hint: 0.15, 0.1
+				pos_hint:  {"x":0.125,"y":0.001}
+				pos: 50,200
+				canvas:
+					Color:
+						rgb: 1,0.5,0.6
+					Rectangle:
+						size: self.size
+						pos: self.pos
+						source: 'boton.png'
+				Button:
+					text: 'Atrás'
+					color: 0,0,0,1
+					background_color: 0, 0, 1, 0
+					on_release: root.manager.current = "screen2"
+
+                
+
+# Popup de usuario Existente.
+<LoginButton>:
+    on_press: self.Login()
+<LoginPopup>:
+    id: Login
+    size_hint: .7, .2
+    auto_dismiss: False
+	source: 'limpio.png'
+
+    title: 'Los datos se guardaron correctamente.'
+	
+    Button:
+        text: 'Continuar'
+		background_color: 0.9,0,0,0.3
+        on_release:  
+			Login.dismiss()
+			
+			
+
+
+
+ # Popup de usuario Existente.
+<SimpleButton>:
+    on_press: self.popup()
+<SimplePopup>:
+    id:usuarioExiste
+    size_hint: .4, .2
+    auto_dismiss: False
+    title: 'El nombre de usuario ya existe, pruebe otro.'
+    Button:
+        text: 'Entendido'
+        on_press: usuarioExiste.dismiss()
+
+
+# Popup de que no concuerdan las claves
+<FalloClaveButton>:
+    on_press: self.FalloClave()
+<FalloClavePop>:
+    id:clave
+    size_hint: .4, .2
+    auto_dismiss: False
+    title: 'Las claves no concuerdan, pruebe de nuevo.!!'
+    Button:
+        text: 'Entendido!'
+        on_press: clave.dismiss()
+
+
+# Popup de campos no llenos
+<TodoLlenoButton>:
+    on_press: self.TodoLleno()
+<TodoLlenoPop>:
+    id:Llenar
+    size_hint: .5, .2
+    auto_dismiss: False
+    title: 'Todos los espacios deben estar llenos.!!'
+    Button:
+        text: 'Entendido!'
+        on_press: Llenar.dismiss()
+
+
+# Popup de Datos Erroneos
+<DatosErrorButton>:
+    on_press: self.DatosError()
+<DatosErrorPop>:
+    id:Error
+    size_hint: .7, .2
+    auto_dismiss: False
+    title: 'Nombre de usuario o clave incorrecta, pruebe de nuevo.!!'
+    Button:
+        text: 'Entendido!'
+        on_press: Error.dismiss()
